@@ -3,7 +3,7 @@
 ##
 
 # shell and wallpapers
-sudo apt-get install rxvt-unicode feh
+sudo apt-get install rxvt-unicode feh xbacklight nitrogen
 
 # window_turn script
 sudo apt-get install libjson-perl

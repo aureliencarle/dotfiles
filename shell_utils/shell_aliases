@@ -34,8 +34,8 @@ alias matrix='cmatrix -a -o -B'
 alias french='setxkbmap fr azerty'
 alias english='setxkbmap us altgr-intl'
 
-alias dual='xrandr --output eDP-1 --auto --output DP-1-2 --auto --right-of eDP-1'
-alias DP2='xrandr --output eDP-1 --off --output DP-1-2 --auto'
+alias dual='xrandr --output eDP1 --auto --output DP1-2 --auto --right-of eDP1'
+alias DP2='xrandr --output eDP1 --off --output DP1-2 --auto'
 alias over='xrandr --auto'
 
 
