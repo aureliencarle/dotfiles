@@ -1,0 +1,50 @@
+#[click]
+#full_text=Click me!
+#command=echo "Got clicked with button $button"
+#color=#F79494
+
+# Guess the weather hourly
+#[weather]
+#command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+#interval=3600
+#color=#A4C2F4
+
+[vpn]
+command=~/.config/i3blocks/scripts/vpn.sh
+interval=10
+
+[ip_p]
+label=
+command=echo "<span foreground='#ff16a0' ><b>`wget http://ipinfo.io/ip -qO-`</b> </span>"
+markup=pango
+interval=once
+
+[ip_l]
+label=
+command=echo "<span foreground='#ff16a0' ><b>`ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`</b> </span>"
+#command=ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'
+markup=pango
+interval=once
+color=#ff16a0
+
+[perf]
+command=~/.config/i3blocks/scripts/perf.py
+interval=5
+
+
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh
+interval=10
+color=#FFFF00
+
+
+[volume]
+label=♪
+command=echo "$(amixer get Master | egrep -o '[0-9]{1,3}%')"
+interval=5
+
+# Update time every 5 seconds
+[time]
+label=
+command=echo "$(date "+%a %d/%m %H:%M")"
+interval=5

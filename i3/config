@@ -13,15 +13,17 @@
 
 set $mod Mod4 
 
-
+focus_follows_mouse no
 
 set $monitor1 eDP1
 set $monitor2 DP1-2
+set $monitor3 HDM1
 
-#exec --no-startup-id feh --bg-scale ~/.wallpapers/synthwave2.jpg --bg-scale ~/.wallpapers/synthwave1.jpg
-exec --no-startup-id nitrogen --set-auto ~/.wallpapers/synthwave2.jpg --head=0 && nitrogen --set-auto  ~/.wallpapers/synthwave1.jpg --head=1 
-
-
+exec --no-startup-id feh --bg-scale ~/.wallpapers/miamiwave.jpg
+#exec --no-startup-id nitrogen --set-auto ~/.wallpapers/synthwave2.jpg --head=0 && nitrogen --set-auto  ~/.wallpapers/synthwave2.jpg --head=1 
+exec --no-startup-id picom -b -f
+# disable pad
+exec xinput set-prop 16 "Synaptics Tap Time" 0 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -54,7 +56,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Shift+Return exec urxvt -name floating
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -124,16 +126,16 @@ bindsym $mod+q focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 1⡇
-set $ws2 2⡇
-set $ws3 3⡇
-set $ws4 4⡇
-set $ws5 5⡇
-set $ws6 6⡇
-set $ws7 7⡇
-set $ws8 8⡇
-set $ws9 9⡇
-set $ws10 10⡇
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 
 
 ## pin workspaces to specific monitors
@@ -258,6 +260,10 @@ set $orange        #ff944d
 set $hi            #ff6600
 set $tx            #040404
 set $ia            #8f8f8f
+set $green         #55FF55
+
+
+set $colorbar      #2b2829
 
 #bar {
 #    i3bar_command i3bar -t
@@ -277,28 +283,37 @@ set $ia            #8f8f8f
 #}
 
 
-bar {
-    tray_output primary
-    i3bar_command i3bar -t
 
-    status_command i3status -c ~/.config/i3/status.conf
-    font pango:Inconsolata, Icons 10
+bar {
+    tray_output $monitor1
+    tray_output $monitor2
+    tray_output $monitor3
+    tray_padding 2
+    i3bar_command i3bar
+
+
+    #status_command i3status -c ~/.config/i3/status.conf
+    #status_command exec ~/.config/i3/status/mybar.sh
+    status_command i3blocks
+
+    font pango:Inconsolata, Icons 12
     position bottom
     separator_symbol " ⡇ "
 
     colors {
         statusline $lightblue
         separator #fffff
-        background $transparent
+        background $colorbar
 
         # Type                     border       background    text
-        focused_workspace         $transparent  $transparent  $pink
-        active_workspace          $transparent  $transparent  $lightblue
-        inactive_workspace        $transparent  $transparent  $lightblue
-        urgent_workspace          $gray         $gray         $orange
+        focused_workspace          $colorbar    $colorbar     $pink
+        active_workspace           $colorbar    $colorbar     $lightblue
+        inactive_workspace         $colorbar    $colorbar     $lightblue
+        urgent_workspace           $colorbar    $colorbar     $orange
     }
-    output $monitor1
-    output $monitor2
+    #output $monitor1
+    #output $monitor2
+    #output $monitor3
 }
 
 
@@ -309,7 +324,7 @@ for_window [class="^.*"] border pixel 3
 
 # Window Colors
 #                           border      background      text        indicator
-client.focused              $orange     $pink           $orange     $pink
+client.focused              $orange     $pink          $orange     $pink
 client.unfocused            $bg         $lightblue      $ia
 client.focused_inactive     $bg         $lightblue      $ia
 client.urgent               $hi         $hi             $tx
@@ -349,11 +364,11 @@ bindsym $mod+Shift+x exec --no-startup-id "i3lock-fancy"
 bindsym $mod+Shift+t exec thunar
 bindsym $mod+Shift+c exec code
 bindsym $mod+Shift+g exec gimp
-bindsym $mod+Shift+f exec firefox -private
-bindsym $mod+Shift+s exec texstudio
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+s exec slack
 bindsym $mod+Shift+m exec mousepad
-bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
-
+#bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+d exec --no-startup-id xfce4-appfinder
 
 #:::::::::::::::::::::::::::::: Floating ::::::::::::::::::::::::::::::#
 
