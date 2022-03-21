@@ -1,14 +1,18 @@
-##
-# For Xubuntu
-##
+#######
+# i3 env install
+#######
 
-# shell and wallpapers
-sudo apt-get install rxvt-unicode feh xbacklight picom
+# install i3
+sudo apt update -y
+sudo apt install i3 i3blocks rxvt-unicode
+
+# rice
+sudo apt-get install feh xbacklight picom fonts-font-awesome i3lock-fancy 
 
 # window_turn script
-sudo apt-get install libjson-perl
+#sudo apt-get install libjson-perl
 
-# i3, gaps and awesome font for status
+# i3 gaps (for ubuntu) 
 sudo add-apt-repository ppa:regolith-linux/release
 sudo apt update
-sudo apt install i3 i3-gaps i3lock-fancy fonts-font-awesome
+sudo apt install i3-gaps 

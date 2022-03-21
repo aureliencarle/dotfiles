@@ -1,5 +1,0 @@
-xinput set-prop 11 "Synaptics Noise Cancellation" 20 20
-xinput set-prop 11 "Synaptics Finger" 50 90 255
-
-#ok="$(python3 get_screen.py)"
-#echo "le truc cest:"$ok

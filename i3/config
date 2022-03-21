@@ -288,7 +288,7 @@ bar {
     tray_output $monitor1
     tray_output $monitor2
     tray_output $monitor3
-    tray_padding 2
+    tray_padding 0
     i3bar_command i3bar
 
 

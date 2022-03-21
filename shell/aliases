@@ -1,0 +1,188 @@
+
+###############################
+##    Arc-Pintade aliases    ##
+###############################
+
+######################################################################
+#
+## Alias definitions.
+## You may want to put all your additions into a separate file like
+## ~/.bash_aliases, instead of adding them here directly.
+#
+#if [ -f ~/.config/shell/aliases ]; then
+#    . ~/.config/shell/aliases
+#fi
+#
+######################################################################
+
+######### std aliases #########
+
+alias python='/usr/bin/python3'
+
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+
+####### handy aliases ########
+
+
+alias ff='firefox &| exit'
+alias ffp='firefox -private &| exit'
+alias fff='yes "fédération française de football"'
+alias gbstudio='gb-studio &| exit'
+
+alias matrix='cmatrix -a -o -b'
+
+alias french='setxkbmap fr azerty'
+alias english='setxkbmap us altgr-intl'
+
+alias update='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove'
+alias shutdown='shutdown -h now'
+alias zshreload="source ~/.zshrc"
+
+
+func palette(){
+    for i in {0..255} 
+    do 
+        print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'} 
+    done
+}
+
+func asciitable(){
+    for y in $(seq 0 524287)
+    do
+    for x in $(seq 0 7)
+    do
+        a=$(expr $y \* 8 + $x)
+        echo -ne "$a \\u$a "
+    done
+    echo
+    done
+}
+
+func backwall(){
+    feh --bg-scale .wallpapers/${1}.jpg
+}
+
+
+####### i3-screen #######
+
+
+alias dualHDMI='xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1'
+alias dualDP='xrandr --output eDP1 --auto --output DP1-2 --auto --right-of eDP1'
+alias DP2='xrandr --output eDP1 --off --output DP1-2 --auto'
+alias HDMI='xrandr --output eDP1 --off --output HDMI1 --auto'
+alias over='xrandr --auto'
+
+
+####### remote machine connection #######
+
+
+func fusercc(){
+    sshfs aucarle@cca.in2p3.fr:$1 ~/Mount/
+}
+
+func fusereuclid(){
+    sshfs aucarle@cceuclid${1}.in2p3.fr:$2 ~/Mount/
+}
+
+alias unmount='fusermount -u ~/Mount/'
+
+#alias rubberducky='ssh pi@172.24.0.1'
+alias piserv='ssh pi@5.51.122.214'
+
+alias cms='ssh -A -t -t -Y acarle@lyoserv.in2p3.fr "ssh -A -Y lyouicms"'
+alias cca='ssh aucarle@cca.in2p3.fr'
+alias cceuclid1='ssh aucarle@cceuclid1.in2p3.fr'
+alias cceuclid2='ssh aucarle@cceuclid2.in2p3.fr'
+alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
+
+
+####### override aliases ########
+
+alias cat='bat'
+alias neofetch='neofetch | lolcat'
+alias arcfortune='fortune -e science wisdom linux linuxcookie computers ascii-art | lolcat'
+
+source $(dirname $(gem which colorls))/tab_complete.sh
+if command -v colorls &> /dev/null
+then
+    alias ls='colorls'
+fi
+
+
+####### API aliases #######
+
+
+alias meteolyon='curl http://wttr.in/Lyon'
+alias publicip='wget http://ipinfo.io/ip -qO-'
+
+
+##########
+## PATH ##
+##########
+
+
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/snap/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:/usr/local/go/bin
+
+
+###########
+## START ##
+###########
+
+
+local white='\033[97m'
+local gray='\033[37m'
+local red='\033[31m'
+local green='\033[32m'
+local blue='\033[34m'
+local yellow='\033[33m'
+local default='\033[91m'
+
+fonction lightsaber()
+{
+    local res="
+$1                  ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+$gray  <╬║║║░▐░░▣█▒█$yellow═╣$gray█▍$white█████████████████████████████████████████████████████▓▒$1▒░
+$1                  ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+"
+    echo $res
+}
+
+fonction lightsaber2()
+{
+    local res="
+$1                  ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+$gray  ¬╣░░░░░░░░╠╠╠╠═╣╣$white█████████████████████████████████████████████████████▓$1▓▒░
+$1          $gray▀▀▀$1     ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+"
+    echo $res
+}
+
+fonction lightsaber3()
+{
+    local res="
+$1                  ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+$gray  ║╚╗╚╗╚╗╚═╝╔╝╔╝╔╝║$white█████████████████████████████████████████████████████▓$1▓▒░
+$1                  ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+"
+    echo $res
+}
+
+lightsaber $red
+lightsaber2 $blue
+#lightsaber3 $green
+
+xset -b
