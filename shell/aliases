@@ -97,9 +97,6 @@ func fusereuclid(){
 
 alias unmount='fusermount -u ~/Mount/'
 
-#alias rubberducky='ssh pi@172.24.0.1'
-alias piserv='ssh pi@5.51.122.214'
-
 alias cms='ssh -A -t -t -Y acarle@lyoserv.in2p3.fr "ssh -A -Y lyouicms"'
 alias cca='ssh aucarle@cca.in2p3.fr'
 alias cceuclid1='ssh aucarle@cceuclid1.in2p3.fr'
