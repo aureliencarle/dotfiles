@@ -25,6 +25,12 @@ exec --no-startup-id picom -b -f
 # disable pad
 exec xinput set-prop 16 "Synaptics Tap Time" 0 
 
+bindsym --release Print exec xfce4-screenshooter -r
+bindsym --release $mod+Print xfce4-screenshooter -f
+
+exec_always xrdb ~/.Xresources
+
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 12
@@ -57,6 +63,28 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Shift+Return exec urxvt -name floating
 bindsym $mod+Return exec xfce4-terminal
+
+
+#::::::::::::::::::::::::::::: Shortcuts ::::::::::::::::::::::::::::::#
+
+
+bindsym $mod+Shift+x exec --no-startup-id "i3lock-fancy"
+bindsym $mod+Shift+t exec thunar
+bindsym $mod+Shift+c exec code -n
+bindsym $mod+Shift+g exec gimp
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+s exec slack
+bindsym $mod+Shift+m exec mousepad
+#bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+d exec --no-startup-id xfce4-appfinder
+
+#:::::::::::::::::::::::::::::: Floating ::::::::::::::::::::::::::::::#
+
+for_window [title="^.*" instance="floating"] floating enable move position center
+
+for_window [class="URxvt" instance="floating"] floating enable move position center
+for_window [class="mousepad" instance="floating"] floating enable move position center
+
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -263,7 +291,10 @@ set $ia            #8f8f8f
 set $green         #55FF55
 
 
-set $colorbar      #2b2829
+set_from_resource $colorbar i3wm.transparent
+set_from_resource $bordersize i3wm.bordersize
+set_from_resource $gaps_in i3wm.gaps_in
+set_from_resource $gaps_out i3wm.gaps_out
 
 #bar {
 #    i3bar_command i3bar -t
@@ -289,7 +320,7 @@ bar {
     tray_output $monitor2
     tray_output $monitor3
     tray_padding 0
-    i3bar_command i3bar
+    i3bar_command i3bar -t
 
 
     #status_command i3status -c ~/.config/i3/status.conf
@@ -311,16 +342,15 @@ bar {
         inactive_workspace         $colorbar    $colorbar     $lightblue
         urgent_workspace           $colorbar    $colorbar     $orange
     }
-    #output $monitor1
-    #output $monitor2
-    #output $monitor3
+    output $monitor1
+    output $monitor2
+    output $monitor3
 }
 
 
-
-gaps inner 10
-gaps outer 10
-for_window [class="^.*"] border pixel 3
+gaps inner $gaps_in
+gaps outer $gaps_out
+for_window [class="^.*"] border pixel $bordersize
 
 # Window Colors
 #                           border      background      text        indicator
@@ -355,25 +385,6 @@ client.urgent               $hi         $hi             $tx
 exec --no-startup-id xbacklight -set 100 
 bindsym XF86MonBrightnessUp exec xbacklight +10%
 bindsym XF86MonBrightnessDown exec xbacklight -10%
-
-
-#::::::::::::::::::::::::::::: Shortcuts ::::::::::::::::::::::::::::::#
-
-
-bindsym $mod+Shift+x exec --no-startup-id "i3lock-fancy"
-bindsym $mod+Shift+t exec thunar
-bindsym $mod+Shift+c exec code
-bindsym $mod+Shift+g exec gimp
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+s exec slack
-bindsym $mod+Shift+m exec mousepad
-#bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
-bindsym $mod+d exec --no-startup-id xfce4-appfinder
-
-#:::::::::::::::::::::::::::::: Floating ::::::::::::::::::::::::::::::#
-
-for_window [class="URxvt" instance="floating"] floating enable move position center
-for_window [class="mousepad" instance="floating"] floating enable move position center
 
 #::::::::::::::::::::::::::::::: Assign :::::::::::::::::::::::::::::::#
 

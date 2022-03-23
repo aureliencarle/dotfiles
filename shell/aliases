@@ -49,6 +49,10 @@ alias update='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get a
 alias shutdown='shutdown -h now'
 alias zshreload="source ~/.zshrc"
 
+func docker-permission(){
+    sudo chmod 666 /var/run/docker.sock
+}
+
 
 func palette(){
     for i in {0..255} 
@@ -70,7 +74,7 @@ func asciitable(){
 }
 
 func backwall(){
-    feh --bg-scale .wallpapers/${1}.jpg
+    feh --bg-scale .wallpapers/${1}
 }
 
 
@@ -106,7 +110,6 @@ alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
 
 ####### override aliases ########
 
-alias cat='bat'
 alias neofetch='neofetch | lolcat'
 alias arcfortune='fortune -e science wisdom linux linuxcookie computers ascii-art | lolcat'
 
