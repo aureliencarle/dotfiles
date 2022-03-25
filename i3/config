@@ -13,13 +13,16 @@
 
 set $mod Mod4 
 
+
 focus_follows_mouse no
 
 set $monitor1 eDP1
 set $monitor2 DP1-2
 set $monitor3 HDM1
 
-exec --no-startup-id feh --bg-scale ~/.wallpapers/miamiwave.jpg
+
+exec --no-startup-id ~/.fehbg
+#exec --no-startup-id feh --bg-scale ~/.wallpapers/miamiwave.jpg
 #exec --no-startup-id nitrogen --set-auto ~/.wallpapers/synthwave2.jpg --head=0 && nitrogen --set-auto  ~/.wallpapers/synthwave2.jpg --head=1 
 exec --no-startup-id picom -b -f
 # disable pad
@@ -65,6 +68,15 @@ bindsym $mod+Shift+Return exec urxvt -name floating
 bindsym $mod+Return exec xfce4-terminal
 
 
+#::::::::::::::::::::::::::::::: Xfce Shortcuts :::::::::::::::::::::::::::::::#
+
+set $mod_alt Mod1
+
+bindsym $mod_alt+F4 kill
+bindsym $mod_alt+Tab workspace next
+bindsym $mod_alt+Control+Right workspace next
+bindsym $mod_alt+Control+Left workspace previous
+
 #::::::::::::::::::::::::::::: Shortcuts ::::::::::::::::::::::::::::::#
 
 
@@ -84,10 +96,12 @@ for_window [title="^.*" instance="floating"] floating enable move position cente
 
 for_window [class="URxvt" instance="floating"] floating enable move position center
 for_window [class="mousepad" instance="floating"] floating enable move position center
+for_window [class="vlc" instance="floating"] floating enable move position center
 
 
 # kill focused window
 bindsym $mod+Shift+a kill
+
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -342,9 +356,9 @@ bar {
         inactive_workspace         $colorbar    $colorbar     $lightblue
         urgent_workspace           $colorbar    $colorbar     $orange
     }
-    output $monitor1
-    output $monitor2
-    output $monitor3
+    #output $monitor1
+    #output $monitor2
+    #output $monitor3
 }
 
 

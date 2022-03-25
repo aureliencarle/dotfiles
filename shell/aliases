@@ -110,7 +110,7 @@ alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
 
 ####### override aliases ########
 
-alias neofetch='neofetch | lolcat'
+alias neofetch='neofetch --source ~/.config/neofetch/arcnours.txt | lolcat'
 alias arcfortune='fortune -e science wisdom linux linuxcookie computers ascii-art | lolcat'
 
 source $(dirname $(gem which colorls))/tab_complete.sh

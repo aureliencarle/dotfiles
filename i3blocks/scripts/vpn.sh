@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-bg="#424242" # grey darken-3
+bg="#7e7e7e" # grey darken-3
 icon=""
 if [ -d /proc/sys/net/ipv4/conf/tap0 ]; then
     bg="#E53935" # rouge
