@@ -20,11 +20,12 @@ set $monitor1 eDP1
 set $monitor2 DP1-2
 set $monitor3 HDM1
 
-
+exec_always --no-startup-id screen_manager -c
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id ~/.fehbg
 #exec --no-startup-id feh --bg-scale ~/.wallpapers/miamiwave.jpg
 #exec --no-startup-id nitrogen --set-auto ~/.wallpapers/synthwave2.jpg --head=0 && nitrogen --set-auto  ~/.wallpapers/synthwave2.jpg --head=1 
-exec --no-startup-id picom -b -f
+exec_always --no-startup-id picom -b -f
 # disable pad
 exec xinput set-prop 16 "Synaptics Tap Time" 0 
 
@@ -73,9 +74,11 @@ bindsym $mod+Return exec xfce4-terminal
 set $mod_alt Mod1
 
 bindsym $mod_alt+F4 kill
-bindsym $mod_alt+Tab workspace next
+#bindsym $mod_alt+Tab workspace next
 bindsym $mod_alt+Control+Right workspace next
 bindsym $mod_alt+Control+Left workspace previous
+
+bindsym $mod_alt+Tab exec ~/.config/i3/scripts/i3_cycle_window
 
 #::::::::::::::::::::::::::::: Shortcuts ::::::::::::::::::::::::::::::#
 
@@ -115,8 +118,6 @@ bindsym $mod+Shift+a kill
 #bindsym $mod+k focus down
 #bindsym $mod+l focus up
 #bindsym $mod+m focus right
-
-bindsym Alt+Tab exec ~/.config/i3/scripts/i3_cycle_window
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left

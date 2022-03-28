@@ -42,7 +42,7 @@ label=
 #♪
 command=echo "<span foreground='#ff16a0' ><b>`amixer get Master | egrep -o '[0-9]{1,3}%'`</b> </span>"
 markup=pango
-interval=5
+interval=1
 
 # Update time every 5 seconds
 [time]
