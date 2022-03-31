@@ -82,7 +82,7 @@ func backwall(){
 
 
 alias dualHDMI='xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1'
-alias dualDP='xrandr --output eDP1 --auto --output DP1-2 --auto --right-of eDP1'
+alias dualDP='xrandr --output DP1-1 --auto --output DP1-2 --auto --right-of DP1-1'
 alias DP2='xrandr --output eDP1 --off --output DP1-2 --auto'
 alias HDMI='xrandr --output eDP1 --off --output HDMI1 --auto'
 alias over='xrandr --auto'
@@ -106,7 +106,7 @@ alias cca='ssh aucarle@cca.in2p3.fr'
 alias cceuclid1='ssh aucarle@cceuclid1.in2p3.fr'
 alias cceuclid2='ssh aucarle@cceuclid2.in2p3.fr'
 alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
-
+alias ecprod='ssh ecprod@cca'
 
 ####### override aliases ########
 
@@ -137,7 +137,6 @@ export PATH=$PATH:/snap/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.config/shell
-
 
 ###########
 ## START ##

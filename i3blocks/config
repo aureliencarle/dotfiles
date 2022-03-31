@@ -9,6 +9,8 @@
 #interval=3600
 #color=#A4C2F4
 
+markup=pango
+
 [vpn]
 command=~/.config/i3blocks/scripts/vpn.sh
 interval=10
@@ -16,14 +18,12 @@ interval=10
 [ip_p]
 label=
 command=echo "<span foreground='#ff16a0' ><b>`wget http://ipinfo.io/ip -qO-`</b> </span>"
-markup=pango
 interval=once
 
 [ip_l]
 label=
 command=echo "<span foreground='#ff16a0' ><b>`ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`</b> </span>"
 #command=ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'
-markup=pango
 interval=once
 
 [perf]
@@ -41,12 +41,20 @@ color=#ff0055
 label=
 #♪
 command=echo "<span foreground='#ff16a0' ><b>`amixer get Master | egrep -o '[0-9]{1,3}%'`</b> </span>"
-markup=pango
 interval=1
+#command=pulseaudio-ctl full-status | awk '{ printf "%i<span color=\"#bd93f9\">%</span>\n", $1 }'
+#interval=1
+#label=<span color="#bd93f9"> </span>
+#border=#bd93f9
 
 # Update time every 5 seconds
-[time]
-label=
-command=echo "<span foreground='#ff16a0' ><b>`date "+%a %d/%m %H:%M"`</b> </span>"
-markup=pango
-interval=5
+#[time]
+#label=
+#command=echo "<span foreground='#ff16a0' ><b>`date "+%a %d/%m %H:%M"`</b> </span>"
+#interval=5
+
+[calendar]
+command=~/.config/i3blocks/scripts/calendar.sh
+interval=1
+label= 
+color=#ff16a0

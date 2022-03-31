@@ -65,7 +65,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Shift+Return exec urxvt -name floating
+bindsym $mod+Shift+Return exec kitty
 bindsym $mod+Return exec xfce4-terminal
 
 
@@ -93,14 +93,30 @@ bindsym $mod+Shift+m exec mousepad
 #bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 bindsym $mod+d exec --no-startup-id xfce4-appfinder
 
+
 #:::::::::::::::::::::::::::::: Floating ::::::::::::::::::::::::::::::#
 
-for_window [title="^.*" instance="floating"] floating enable move position center
 
-for_window [class="URxvt" instance="floating"] floating enable move position center
-for_window [class="mousepad" instance="floating"] floating enable move position center
+# force floating for all new windows
+for_window [class="[.]*"] floating enable resize set 1400 900 move position center
+for_window [class="firefox"] floating disable
+for_window [class="Slack"] floating disable
+for_window [class="Code"] floating disable
+for_window [class="Thunar"] floating disable
+for_window [class="Mousepad"] floating disable
+for_window [class="Xfce4-terminal"] floating disable
+for_window [class="Atril"] floating disable
+#for_window [class="vlc"] resize set 1400 900
+for_window [class="Yad"] resize set 300 200
+
+
+
+#for_window [class="Xfce4-terminal" instance="floating"] floating enable move position center
 for_window [class="vlc" instance="floating"] floating enable move position center
 
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle move position center
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -150,9 +166,6 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -342,7 +355,7 @@ bar {
     #status_command exec ~/.config/i3/status/mybar.sh
     status_command i3blocks
 
-    font pango:Inconsolata, Icons 12
+    font pango:Inconsolata, Icons 14
     position bottom
     separator_symbol " ⡇ "
 
@@ -365,7 +378,7 @@ bar {
 
 gaps inner $gaps_in
 gaps outer $gaps_out
-for_window [class="^.*"] border pixel $bordersize
+for_window [class="^.*"] border pixel 2
 
 # Window Colors
 #                           border      background      text        indicator
