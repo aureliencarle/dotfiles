@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import subprocess
+import argparse
+
+
+################################################################################
+# Global part 
+################################################################################
+
+HOME = '/home/aucarle/'
+LAYOUT_DIRECTORY = '.screenlayout/'
+                       
+XIN        = 'xinput'
+PROPERTIES = 'set-prop'
+XIN_OPTION = {"Synaptics Noise Cancellation" : ['20', '20'], 
+              "Synaptics Finger"             : ['50', '90', '255']
+             }
+
+SPACE     = '    '
+SPACEPLUS = '        + '
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-c', '--config', default='')
+parser.add_argument('-w', '--wallpaper', default='manaan.png')
+args = parser.parse_args()
+
+config    = args.config
+wallpaper = args.wallpaper
+
+
+def display(monitors):
+    print()
+    print('Display : Arc-Pintade')
+    print(SPACE+'config    : '+args.config)
+    print(SPACE+'wallpaper : '+wallpaper)
+    print(SPACE+'monitors  :')
+    for m in monitors:
+        print(SPACEPLUS+m)
+    print(SPACE+'xinputs   :')
+    for key, o in XIN_OPTION.items():
+        print(SPACEPLUS+key+' '+str(o))
+    print()
+
+################################################################################
+# Arandr part 
+################################################################################
+
+layout_file = HOME+LAYOUT_DIRECTORY+args.config+'_layout.sh'
+with open(layout_file) as f:
+    file = f.readlines()
+
+def get_all_screens():
+    xrandr_output = ['screen']
+    for x in file[1].split():
+        if x.find('output') != -1:
+            xrandr_output.append(x)
+        else:
+            xrandr_output[-1] += ' '+x
+    return xrandr_output
+
+def get_monitors():
+    if args.config == '':
+        return ['eDP1 standard']
+    else:
+        xrandr_active = []
+        for x in get_all_screens():
+            if x.find('--off') == -1:
+                device = x.replace('--output ', '')
+                xrandr_active.append(device)
+        xrandr_active.remove('screen xrandr')
+        return xrandr_active
+
+################################################################################
+# Xinput part 
+################################################################################
+
+
+def test():
+    pad_correction()
+
+def get_xinput_id(prop):
+    x_object = subprocess.run('xinput list | grep '+prop, shell=True, stdout=subprocess.PIPE)
+    x_object_h = x_object.stdout.decode('utf-8').split()
+    for l in x_object_h:
+        if l.find('id=') != -1:
+            return l[3:]
+
+def pad_correction(prop='Touchpad'):
+    foo = []
+    for key, values in XIN_OPTION.items():
+        foo.append([XIN,PROPERTIES,get_xinput_id(prop)]+[key]+values)
+    return foo
+
+################################################################################
+# Wallpaper part 
+################################################################################
+
+def backwall(wallpaper, option='scale'):
+    return 'feh --bg-'+option+' ~/.wallpapers/'+wallpaper
+
+def refresh_wallpaper():
+    return backwall(wallpaper)
+
+################################################################################
+# Main part 
+################################################################################
+
+
+if __name__ == '__main__':
+
+    #evaluate = [X, '--listmonitors']
+    #xrandr_output =  subprocess.run(evaluate, stdout=subprocess.PIPE)
+    #xrandr_output_h = (xrandr_output.stdout.decode('utf-8')).split()
+    
+    monitors = get_monitors()
+
+    cmds = pad_correction()
+    cmds.append(['bash',layout_file])
+
+    for pad in cmds:
+        subprocess.run(pad)
+    subprocess.run(refresh_wallpaper(), shell=True)
+
+    display(monitors)
