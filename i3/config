@@ -52,7 +52,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -98,17 +98,28 @@ bindsym $mod+d exec --no-startup-id xfce4-appfinder
 
 
 # force floating for all new windows
-for_window [class="[.]*"] floating enable resize set 1400 900 move position center
-for_window [class="firefox"] floating disable
-for_window [class="Slack"] floating disable
-for_window [class="Code"] floating disable
-for_window [class="Thunar"] floating disable
-for_window [class="Mousepad"] floating disable
-for_window [class="Xfce4-terminal"] floating disable
-for_window [class="Atril"] floating disable
+#for_window [class="[.]*"] floating enable resize set 1400 900 move position center
+#for_window [class="firefox"] floating disable
+#for_window [class="Slack"] floating disable
+#for_window [class="Code"] floating disable
+#for_window [class="Thunar"] floating disable
+#for_window [class="Mousepad"] floating disable
+#for_window [class="Xfce4-terminal"] floating disable
+#for_window [class="Atril"] floating disable
 #for_window [class="vlc"] resize set 1400 900
-for_window [class="Yad"] resize set 300 200
 
+#floating_maximum_size -1 x -1
+#for_window [class="Code"] floating enable resize set floating_maximum_size
+#for_window [class="Xfce4-taskmanager"] floating enable
+for_window [class="kitty"] floating enable
+for_window [class="Yad"] floating enable resize set 300 200
+for_window [window_role="pop-up"] floating enable resize set 800 600 move position center
+for_window [window_role="bubble"] floating enable resize set 800 600 move position center
+for_window [window_role="task_dialog"] floating enable resize set 800 600 move position center
+for_window [window_role="Preferences"] floating enable resize set 800 600 move position center
+for_window [window_role="About"] floating enable resize set 800 600 move position center
+for_window [window_type="dialog"] floating enable resize set 1400 900 move position center
+for_window [window_type="menu"] floating enable resize set 800 600 move position center
 
 
 #for_window [class="Xfce4-terminal" instance="floating"] floating enable move position center
@@ -318,11 +329,13 @@ set $tx            #040404
 set $ia            #8f8f8f
 set $green         #55FF55
 
+set $gaps_in 20
+set $gaps_out 0
 
 set_from_resource $colorbar i3wm.transparent
 set_from_resource $bordersize i3wm.bordersize
-set_from_resource $gaps_in i3wm.gaps_in
-set_from_resource $gaps_out i3wm.gaps_out
+#set_from_resource $gaps_in i3wm.gaps_in
+#set_from_resource $gaps_out i3wm.gaps_out
 
 #bar {
 #    i3bar_command i3bar -t
@@ -344,9 +357,9 @@ set_from_resource $gaps_out i3wm.gaps_out
 
 
 bar {
-    tray_output $monitor1
-    tray_output $monitor2
-    tray_output $monitor3
+    #tray_output $monitor1
+    #tray_output $monitor2
+    #tray_output $monitor3
     tray_padding 0
     i3bar_command i3bar -t
 
@@ -356,7 +369,7 @@ bar {
     status_command i3blocks
 
     font pango:Inconsolata, Icons 14
-    position bottom
+    position top
     separator_symbol " ⡇ "
 
     colors {
@@ -378,7 +391,8 @@ bar {
 
 gaps inner $gaps_in
 gaps outer $gaps_out
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
+#for_window [class="^.*"] border pixel $bordersize
 
 # Window Colors
 #                           border      background      text        indicator

@@ -107,6 +107,7 @@ alias cceuclid1='ssh aucarle@cceuclid1.in2p3.fr'
 alias cceuclid2='ssh aucarle@cceuclid2.in2p3.fr'
 alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
 alias ecprod='ssh ecprod@cca'
+alias workernode='ssh aucarle@ccwslurm0013.in2p3.fr'
 
 ####### override aliases ########
 

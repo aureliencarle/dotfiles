@@ -3,45 +3,79 @@
 #command=echo "Got clicked with button $button"
 #color=#F79494
 
-# Guess the weather hourly
-#[weather]
-#command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-#interval=3600
-#color=#A4C2F4
-
 markup=pango
+
+#[crypto]
+#label=
+#markup=pango
+#interval=60
+#instance=bitcoin
+#command=~/.config/i3blocks/scripts/crypto.py # CHANGE ME
+
+#[crypto]
+#label=
+#markup=pango
+#interval=57
+#instance=bitcoin-cash
+#command=~/.config/i3blocks/scripts/crypto.py # CHANGE ME
+
+#[crypto]
+#label=
+#markup=pango
+#interval=63
+#instance=ethereum
+#command=~/.config/i3blocks/scripts/crypto.py # CHANGE ME
+
+[kernel]
+label= 
+command=echo "<span foreground='#ff16a0' ><b>`uname -r`</b> </span>"
+interval=once
+
+#[gpu]
+#label=
+#command=echo "<span foreground='#ff16a0' ><b>`lshw -C video | grep produit | cut -d : -f2`</b> </span>"
+#interval=once
+
+#[cpu]
+#label=
+#command=echo "<span foreground='#ff16a0' ><b>`cat /proc/cpuinfo | grep "model name" -m 1 | cut -d : -f2`</b> </span>"
+#interval=once
 
 [vpn]
 command=~/.config/i3blocks/scripts/vpn.sh
-interval=10
+interval=1
 
 [ip_p]
 label=
 command=echo "<span foreground='#ff16a0' ><b>`wget http://ipinfo.io/ip -qO-`</b> </span>"
-interval=once
+interval=1
 
 [ip_l]
 label=
 command=echo "<span foreground='#ff16a0' ><b>`ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`</b> </span>"
 #command=ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'
-interval=once
-
-[perf]
-command=~/.config/i3blocks/scripts/perf.py
-interval=5
-color=#FFFF00
-
-[battery]
-command=~/.config/i3blocks/scripts/battery.sh
-interval=10
-color=#ff0055
-
-
-[volume]
-label=
-#♪
-command=echo "<span foreground='#ff16a0' ><b>`amixer get Master | egrep -o '[0-9]{1,3}%'`</b> </span>"
 interval=1
+
+[weather]
+command=echo "<span foreground='#ff16a0' ><b>`curl -s 'https://wttr.in/{Lyon}?format=4'`</b> </span>"
+interval=3600
+
+#[perf]
+#command=~/.config/i3blocks/scripts/perf.py
+#interval=5
+#color=#FFFF00
+
+#[battery]
+#command=~/.config/i3blocks/scripts/battery.sh
+#interval=10
+#color=#ff0055
+
+
+#[volume]
+#label=
+#♪
+#command=echo "<span foreground='#ff16a0' ><b>`amixer get Master | egrep -o '[0-9]{1,3}%'`</b> </span>"
+#interval=1
 #command=pulseaudio-ctl full-status | awk '{ printf "%i<span color=\"#bd93f9\">%</span>\n", $1 }'
 #interval=1
 #label=<span color="#bd93f9"> </span>
@@ -53,8 +87,8 @@ interval=1
 #command=echo "<span foreground='#ff16a0' ><b>`date "+%a %d/%m %H:%M"`</b> </span>"
 #interval=5
 
-[calendar]
-command=~/.config/i3blocks/scripts/calendar.sh
-interval=1
-label= 
-color=#ff16a0
+#[calendar]
+#command=~/.config/i3blocks/scripts/calendar.sh
+#interval=1
+#label= 
+#color=#ff16a0

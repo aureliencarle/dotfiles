@@ -15,7 +15,8 @@ LAYOUT_DIRECTORY = '.screenlayout/'
 XIN        = 'xinput'
 PROPERTIES = 'set-prop'
 XIN_OPTION = {"Synaptics Noise Cancellation" : ['20', '20'], 
-              "Synaptics Finger"             : ['50', '90', '255']
+              "Synaptics Finger"             : ['128', '128', '128'],
+              "Synaptics Tap Time"           : ['0']#128
              }
 
 SPACE     = '    '
@@ -23,7 +24,7 @@ SPACEPLUS = '        + '
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-c', '--config', default='')
-parser.add_argument('-w', '--wallpaper', default='manaan.png')
+parser.add_argument('-w', '--wallpaper', default='miamiwave.jpg')
 args = parser.parse_args()
 
 config    = args.config
