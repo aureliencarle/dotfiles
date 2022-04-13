@@ -1,3 +1,5 @@
+.gitignore
+yad.conf
 gtk-2.0
 lxpanel
 procps
