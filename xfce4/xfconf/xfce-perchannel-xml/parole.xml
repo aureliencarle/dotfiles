@@ -11,15 +11,15 @@
     <property name="font" type="string" value="Sans Bold 20"/>
   </property>
   <property name="folders" type="empty">
-    <property name="last-used-media" type="string" value="/media/aucarle/source/French"/>
+    <property name="last-used-media" type="string" value="/home/aucarle/Vidéos"/>
   </property>
   <property name="window" type="empty">
     <property name="maximized" type="bool" value="false"/>
-    <property name="width" type="int" value="602"/>
-    <property name="height" type="int" value="964"/>
+    <property name="width" type="int" value="620"/>
+    <property name="height" type="int" value="1331"/>
   </property>
   <property name="audio" type="empty">
-    <property name="volume" type="int" value="100"/>
+    <property name="volume" type="int" value="94"/>
   </property>
   <property name="playlist" type="empty">
     <property name="repeat" type="bool" value="true"/>

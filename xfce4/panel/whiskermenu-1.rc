@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-file-manager.desktop,libreoffice-writer.desktop,libreoffice-calc.desktop,org.gnome.Software.desktop,xfce4-terminal-emulator.desktop
-recent=quake3.desktop,xfce4-file-manager.desktop,update-manager.desktop,xfce4-web-browser.desktop,slack.desktop,gimp.desktop,org.gnome.DiskUtility.desktop,thunar-volman-settings.desktop
+recent=xfce-session-settings.desktop,xfce4-mime-settings.desktop,xfce4-web-browser.desktop,quake3.desktop,firefox.desktop,xfce4-terminal-emulator.desktop,update-manager.desktop,xfce-ui-settings.desktop,xfce4-file-manager.desktop,slack.desktop
 button-title=\ \ Arc-Pintade\ \ 
 button-icon=WormsReloaded
 button-single-row=false

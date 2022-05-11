@@ -1,5 +1,6 @@
 .gitignore
 yad.conf
+BraveSoftware
 gtk-2.0
 lxpanel
 procps

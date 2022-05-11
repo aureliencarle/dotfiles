@@ -26,9 +26,13 @@ markup=pango
 #instance=ethereum
 #command=~/.config/i3blocks/scripts/crypto.py # CHANGE ME
 
+[flags]
+command=echo "<span foreground='#ff16a0' ><b>🇫🇷 🇮🇹 🇦🇲 🇳🇴 🇺🇸</b> </span>"
+interval=once
+
 [kernel]
-label= 
-command=echo "<span foreground='#ff16a0' ><b>`uname -r`</b> </span>"
+#label= 
+command=echo "<span foreground='#ff16a0' ><b>🐧 `uname -r`</b> </span>"
 interval=once
 
 #[gpu]
@@ -46,19 +50,28 @@ command=~/.config/i3blocks/scripts/vpn.sh
 interval=1
 
 [ip_p]
-label=
-command=echo "<span foreground='#ff16a0' ><b>`wget http://ipinfo.io/ip -qO-`</b> </span>"
+#label=
+command=echo "<span foreground='#00CDFF' ><b>🌍 `wget https://ipinfo.io/ip -qO-`</b> </span>"
 interval=1
 
 [ip_l]
-label=
-command=echo "<span foreground='#ff16a0' ><b>`ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`</b> </span>"
+#label=
+command=echo "<span foreground='#ff16a0' ><b>🖥️ `ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`</b> </span>"
 #command=ip route get 1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'
 interval=1
 
-[weather]
-command=echo "<span foreground='#ff16a0' ><b>`curl -s 'https://wttr.in/{Lyon}?format=4'`</b> </span>"
-interval=3600
+[ip_h]
+#label=home
+command=echo "<span foreground='#FFFFFF' ><b>🏠 89.80.175.171</b> </span>"
+interval=once
+
+#[weather]
+#command=echo "<span foreground='#ff16a0' ><b>🇫🇷 `curl -s 'https://wttr.in/{Lyon}?format=2'`</b> </span>"
+#interval=3600
+
+#[weather]
+#command=echo "<span foreground='#ff16a0' ><b>🇳🇴 `curl -s 'https://wttr.in/{Oslo}?format=2'`</b> </span>"
+#interval=3600
 
 #[perf]
 #command=~/.config/i3blocks/scripts/perf.py
@@ -81,11 +94,11 @@ interval=3600
 #label=<span color="#bd93f9"> </span>
 #border=#bd93f9
 
-# Update time every 5 seconds
-#[time]
+#Update time every 5 seconds
+[time]
 #label=
-#command=echo "<span foreground='#ff16a0' ><b>`date "+%a %d/%m %H:%M"`</b> </span>"
-#interval=5
+command=echo "<span foreground='#ff16a0' ><b>⌚ `date "+%H:%M:%S"`</b> </span>"
+interval=1
 
 #[calendar]
 #command=~/.config/i3blocks/scripts/calendar.sh

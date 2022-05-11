@@ -68,15 +68,18 @@ floating_modifier $mod
 bindsym $mod+Shift+Return exec kitty
 bindsym $mod+Return exec xfce4-terminal
 
+# move workspace to left and right monitors
+bindsym $mod+Shift+bracketleft move workspace to output left
+bindsym $mod+Shift+bracketright move workspace to output right
 
 #::::::::::::::::::::::::::::::: Xfce Shortcuts :::::::::::::::::::::::::::::::#
 
 set $mod_alt Mod1
 
 bindsym $mod_alt+F4 kill
-#bindsym $mod_alt+Tab workspace next
+bindsym $mod+Tab workspace next
 bindsym $mod_alt+Control+Right workspace next
-bindsym $mod_alt+Control+Left workspace previous
+bindsym $mod_alt+Control+Left workspace prev
 
 bindsym $mod_alt+Tab exec ~/.config/i3/scripts/i3_cycle_window
 
@@ -88,8 +91,10 @@ bindsym $mod+Shift+t exec thunar
 bindsym $mod+Shift+c exec code -n
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+b exec brave-browser
 bindsym $mod+Shift+s exec slack
 bindsym $mod+Shift+m exec mousepad
+bindsym $mod+Shift+k exec rocketchat-desktop
 #bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 bindsym $mod+d exec --no-startup-id xfce4-appfinder
 
@@ -108,11 +113,22 @@ bindsym $mod+d exec --no-startup-id xfce4-appfinder
 #for_window [class="Atril"] floating disable
 #for_window [class="vlc"] resize set 1400 900
 
+
+
 #floating_maximum_size -1 x -1
 #for_window [class="Code"] floating enable resize set floating_maximum_size
 #for_window [class="Xfce4-taskmanager"] floating enable
+
+
+for_window [class="Xfce4-settings-manager"] floating enable
+
+
+
+for_window [class="Noob Engine !!!"] floating enable move position center
 for_window [class="kitty"] floating enable
 for_window [class="Yad"] floating enable resize set 300 200
+for_window [class="Ristretto"] floating enable move resize set 1400 900 position center
+
 for_window [window_role="pop-up"] floating enable resize set 800 600 move position center
 for_window [window_role="bubble"] floating enable resize set 800 600 move position center
 for_window [window_role="task_dialog"] floating enable resize set 800 600 move position center
@@ -120,6 +136,9 @@ for_window [window_role="Preferences"] floating enable resize set 800 600 move p
 for_window [window_role="About"] floating enable resize set 800 600 move position center
 for_window [window_type="dialog"] floating enable resize set 1400 900 move position center
 for_window [window_type="menu"] floating enable resize set 800 600 move position center
+
+
+for_window [class="zoom"] floating enable resize set 800 600 move position center
 
 
 #for_window [class="Xfce4-terminal" instance="floating"] floating enable move position center
@@ -205,6 +224,8 @@ set $ws9 9
 set $ws10 10
 
 
+
+
 ## pin workspaces to specific monitors
 #workspace $ws1 output $monitor1
 #workspace $ws2 output $monitor1
@@ -254,6 +275,33 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+10 move container to workspace number $ws10
+
+
+# Special workspace
+
+set $ws11 "!"
+set $ws12 "@"
+set $ws13 "#"
+set $ws14 "$"
+set $ws15 "%"
+
+assign [class="Slack"] $ws12
+assign [class="Rocket.Chat"] $ws13
+assign [class="Mousepad"] $ws14
+assign [class="zoom"] $ws15
+
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
+bindsym $mod+F5 workspace $ws15
+
+bindsym $mod+Shift+F1 move container to workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14
+bindsym $mod+Shift+F5 move container to workspace $ws15
+
 
 #::::::::::::::::::::::::::::: Out System :::::::::::::::::::::::::::::#
 
@@ -357,10 +405,11 @@ set_from_resource $bordersize i3wm.bordersize
 
 
 bar {
+    tray_output none
     #tray_output $monitor1
     #tray_output $monitor2
     #tray_output $monitor3
-    tray_padding 0
+    #tray_padding 0
     i3bar_command i3bar -t
 
 
@@ -404,6 +453,25 @@ client.urgent               $hi         $hi             $tx
 
 #::::::::::::::::::::::::::::: Backlight ::::::::::::::::::::::::::::::#
 
+##******************************************************##
+#  To use i3lock-fancy instead of xfce4-screensaver      #
+#  need to change following file                         #
+#                                                        #
+#    /usr/bin/xflock4                                    #
+#    for lock_cmd in \                                   #
+#       "$LOCK_CMD" \                                    #
+#       "i3lock-fancy" \       <=== THIS LINE            #
+#       "xfce4-screensaver-command --lock" \             #
+#       "xscreensaver-command -lock" \                   #
+#       "light-locker-command --lock" \                  #
+#       "gnome-screensaver-command --lock" \             #
+#       "mate-screensaver-command --lock"                #
+#    do                                                  #
+#       if [ ! -z "$lock_cmd" ]; then                    #
+#           $lock_cmd >/dev/null 2>&1 && exit            #
+#       fi                                               #
+#    done                                                #
+##******************************************************##
 
 ##******************************************************##
 #  If you get the "No outputs have backlight property",  #
@@ -427,11 +495,4 @@ client.urgent               $hi         $hi             $tx
 exec --no-startup-id xbacklight -set 100 
 bindsym XF86MonBrightnessUp exec xbacklight +10%
 bindsym XF86MonBrightnessDown exec xbacklight -10%
-
-#::::::::::::::::::::::::::::::: Assign :::::::::::::::::::::::::::::::#
-
-
-#assign [class="Gimp"] $ws5
-#assign [class="Thunar"] $ws2
-#assign [class="Code"] $ws4
 
