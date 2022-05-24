@@ -114,11 +114,11 @@ alias workernode='ssh aucarle@ccwslurm0013.in2p3.fr'
 alias neofetch='neofetch --source ~/.config/neofetch/arcnours.txt | lolcat'
 alias arcfortune='fortune -e science wisdom linux linuxcookie computers ascii-art | lolcat'
 
-source $(dirname $(gem which colorls))/tab_complete.sh
-if command -v colorls &> /dev/null
-then
-    alias ls='colorls'
-fi
+#source $(dirname $(gem which colorls))/tab_complete.sh
+#if command -v colorls &> /dev/null
+#then
+#    alias ls='colorls'
+#fi
 
 
 ####### API aliases #######
@@ -126,6 +126,13 @@ fi
 
 alias meteolyon='curl http://wttr.in/Lyon'
 alias publicip='wget http://ipinfo.io/ip -qO-'
+
+
+##############
+## Cryptext ##
+##############
+
+alias ccacode='cryptext euclid -l cca'
 
 
 ##########

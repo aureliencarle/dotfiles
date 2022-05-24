@@ -90,10 +90,11 @@ bindsym $mod+Shift+x exec --no-startup-id "i3lock-fancy"
 bindsym $mod+Shift+t exec thunar
 bindsym $mod+Shift+c exec code -n
 bindsym $mod+Shift+g exec gimp
+bindsym $mod+Shift+n exec xfce4-notes 
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+b exec brave-browser
 bindsym $mod+Shift+s exec slack
-bindsym $mod+Shift+m exec mousepad
+bindsym $mod+Shift+m exec gedit -s
 bindsym $mod+Shift+k exec rocketchat-desktop
 #bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 bindsym $mod+d exec --no-startup-id xfce4-appfinder
@@ -128,6 +129,8 @@ for_window [class="Noob Engine !!!"] floating enable move position center
 for_window [class="kitty"] floating enable
 for_window [class="Yad"] floating enable resize set 300 200
 for_window [class="Ristretto"] floating enable move resize set 1400 900 position center
+for_window [class="Xfce4-appfinder"] floating enable move resize set 1400 900 position center
+
 
 for_window [window_role="pop-up"] floating enable resize set 800 600 move position center
 for_window [window_role="bubble"] floating enable resize set 800 600 move position center
@@ -278,17 +281,18 @@ bindsym $mod+Shift+10 move container to workspace number $ws10
 
 
 # Special workspace
+#
+set $ws11 "I"
+set $ws12 "II"
+set $ws13 "III"
+set $ws14 "IV"
+set $ws15 "V"
 
-set $ws11 "!"
-set $ws12 "@"
-set $ws13 "#"
-set $ws14 "$"
-set $ws15 "%"
-
+assign [class="Rocket.Chat"] $ws11
 assign [class="Slack"] $ws12
-assign [class="Rocket.Chat"] $ws13
+assign [class="zoom"] $ws13
 assign [class="Mousepad"] $ws14
-assign [class="zoom"] $ws15
+
 
 bindsym $mod+F1 workspace $ws11
 bindsym $mod+F2 workspace $ws12
