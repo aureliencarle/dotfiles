@@ -65,7 +65,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Shift+Return exec kitty
+bindsym $mod+Shift+Return exec cool-retro-term
 bindsym $mod+Return exec xfce4-terminal
 
 # move workspace to left and right monitors
@@ -127,11 +127,14 @@ for_window [class="Xfce4-settings-manager"] floating enable
 
 for_window [class="Noob Engine !!!"] floating enable move position center
 for_window [class="kitty"] floating enable
+for_window [class="cool-retro-term"] floating enable position center
 for_window [class="Yad"] floating enable resize set 300 200
 for_window [class="Ristretto"] floating enable move resize set 1400 900 position center
 for_window [class="Xfce4-appfinder"] floating enable move resize set 1400 900 position center
+for_window [class="main.x"] floating enable position center
+for_window [class="OldSchool3D!"] floating enable position center
 
-
+for_window [title="i3Float"] floating enable position center
 for_window [window_role="pop-up"] floating enable resize set 800 600 move position center
 for_window [window_role="bubble"] floating enable resize set 800 600 move position center
 for_window [window_role="task_dialog"] floating enable resize set 800 600 move position center

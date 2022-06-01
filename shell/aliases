@@ -102,7 +102,7 @@ func fusereuclid(){
 alias unmount='fusermount -u ~/Mount/'
 
 alias cms='ssh -A -t -t -Y acarle@lyoserv.in2p3.fr "ssh -A -Y lyouicms"'
-alias cca='ssh aucarle@cca.in2p3.fr'
+alias cca='ssh -XY aucarle@cca.in2p3.fr'
 alias cceuclid1='ssh aucarle@cceuclid1.in2p3.fr'
 alias cceuclid2='ssh aucarle@cceuclid2.in2p3.fr'
 alias cceuclid3='ssh aucarle@cceuclid3.in2p3.fr'
@@ -132,7 +132,10 @@ alias publicip='wget http://ipinfo.io/ip -qO-'
 ## Cryptext ##
 ##############
 
-alias ccacode='cryptext euclid -l cca'
+
+alias codecca='cryptext euclid -l cca'
+alias codeecprod='cryptext euclid -l ecprod'
+alias codevpn='cryptext euclid -l vpn'
 
 
 ##########

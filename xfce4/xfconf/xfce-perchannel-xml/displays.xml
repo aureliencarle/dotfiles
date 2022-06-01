@@ -38,7 +38,7 @@
       </property>
     </property>
     <property name="eDP1" type="string" value="Portable">
-      <property name="Active" type="bool" value="true"/>
+      <property name="Active" type="bool" value="false"/>
       <property name="EDID" type="string" value="d7bd8007bc7c19374655aef1ba740e03ee0ce25e"/>
       <property name="Resolution" type="string" value="1920x1080"/>
       <property name="RefreshRate" type="double" value="60.049471"/>
@@ -142,7 +142,7 @@
       </property>
     </property>
     <property name="eDP1" type="string" value="Portable">
-      <property name="Active" type="bool" value="true"/>
+      <property name="Active" type="bool" value="false"/>
       <property name="EDID" type="string" value="d7bd8007bc7c19374655aef1ba740e03ee0ce25e"/>
       <property name="Resolution" type="string" value="1920x1080"/>
       <property name="RefreshRate" type="double" value="60.049471"/>
